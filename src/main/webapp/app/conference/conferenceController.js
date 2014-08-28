@@ -77,6 +77,14 @@ function ConferenceCtrl($scope, $rootScope, $timeout, $route, $location, $templa
         return true;
     }
 
+    $scope.evaluationFormSubmission = function(formID, loaderID, completeID, buttonID){
+        $("#"+formID).submit();
+        $("#"+loaderID).show();
+        setTimeout( 'killEvaluationFormSubmissionLoader("'+loaderID+'")', 900);
+        setTimeout( 'showEvaluationFormSubmissionComplete("'+completeID+'")', 910);
+        setTimeout( 'disableEvaluationFormSubmissionButton("'+buttonID+'")', 10);
+    }
+
     $scope.tookOverallEval = function(){
         $timeout(function(){store.set('tookOverallEval'+($rootScope.conferenceName.replace(' ','_')),true);},2500);
     }
