@@ -1,0 +1,90 @@
+<!--
+
+    The MIT License
+    Copyright (c) 2011 Kuali Mobility Team
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+-->
+<div ng-controller="AttendeesCtrl">
+
+    <h3 class="hidden-xs">Conference Attendees</h3>
+ 
+    <div class="styled-select">
+        <label> 
+            Filter by
+            <select name="letterFilter" id="letterFilter" ng-init="filterChosen=''" ng-model="filterChosen" ng-change="filterAttendees(filterChosen)">
+                <optgroup label="Last name starting with...">
+                    <option value="" selected="selected">ALL</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                    <option value="H">H</option>
+                    <option value="I">I</option>
+                    <option value="J">J</option>
+                    <option value="K">K</option>
+                    <option value="L">L</option>
+                    <option value="M">M</option>
+                    <option value="N">N</option>
+                    <option value="O">O</option>
+                    <option value="P">P</option>
+                    <option value="Q">Q</option>
+                    <option value="R">R</option>
+                    <option value="S">S</option>
+                    <option value="T">T</option>
+                    <option value="U">U</option>
+                    <option value="V">V</option>
+                    <option value="W">W</option>
+                    <option value="X">X</option>
+                    <option value="Y">Y</option>
+                    <option value="Z">Z</option>
+                </optgroup>
+                <optgroup label="Their organization....">
+                    <option ng-repeat="org in organizations" value="{{org}}">{{org}}</option>
+                </optgroup>
+            </select>
+        </label>
+    </div>
+    <div class="clearfix"></div>
+
+    <loading ng-show="isLoading()"></loading>
+    <div class="alert alert-danger" ng-show="attendees.length<=0 && !isLoading()">Sorry, but there are not any attendees with last names starting with {{attendeeLetterChosen}}.</div>
+    <div class="alpha-row" ng-repeat="attendee in attendees | orderBy:'lastname' | filter:{'letter':attendeeLetterChosen} | filter:{'organization':orgFilter}" ng-repeat-is-finished="attendeesLoaded()">
+        <div class="col-xs-12 col-sm-4 col-lg-2 attendee-card">
+            <div class="col-xs-12 col-sm-12 col-lg-12"><strong>{{attendee.lastname}}, {{attendee.firstname}}</strong></div>
+            <div ng-show="(attendee.jobtitle!='Other' && attendee.jobtitle!='other')" class="col-xs-12 col-sm-12 col-lg-12" title="{{attendee.jobtitle}}"><em>{{attendee.jobtitle}}</em></div>
+            <div class="col-xs-12 col-sm-12 col-lg-12"><a href="mailto:{{attendee.email}}">{{attendee.email}}</a></div>
+            <div class="col-xs-12 col-sm-12 col-lg-12" title="{{attendee.organization}}">{{attendee.organization}}</div>
+            <span class="paragraph-end"></span>
+        </div>
+    </div>
+    <div class="alpha-row" ng-show="(attendees | filter:{'letter':attendeeLetterChosen} | filter:{'organization':orgFilter}).length==0">
+        <div class="col-xs-12 col-sm-4 col-lg-2 attendee-card">
+            <div class="col-xs-12 col-sm-12 col-lg-12">No attendees match your currently selected filter.</div>
+        </div>
+    </div>
+
+</div>
+
+
+

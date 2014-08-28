@@ -1,0 +1,194 @@
+<!--
+
+    The MIT License
+    Copyright (c) 2011 Kuali Mobility Team
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+-->
+<div>
+    <div class="modal-header">
+        <button type="button" ng-click="cancel()" class="close hidden-xs" data-dismiss="modal" aria-hidden="true"><span
+                class="glyphicon glyphicon-remove-circle"></span></button>
+        <h4 class="modal-title">{{localSession.title.split('\\').join('')}}</h4>
+        <span class="glyphicon icon-calendar"></span> {{localSession.dateParsed | date:'longDate'}}
+        <br>
+        <span class="glyphicon glyphicon-time"></span> {{localSession.starttime}} - {{localSession.endtime}}
+    </div>
+    <div class="modal-body">
+        <div ng-show="localSession.room!='Unknown'" class="col-xs-12 col-sm-4 col-lg-4"><span
+                class="glyphicon glyphicon-home"></span> Room: {{localSession.room}}
+        </div>
+        <div ng-show="localSession.level!='Unknown'" class="col-xs-12 col-sm-4 col-lg-4"><span
+                class="glyphicon glyphicon-th-list"></span> Level: {{localSession.level}}
+        </div>
+        <div ng-show="localSession.track!='Unknown'" class="col-xs-12 col-sm-4 col-lg-4"><span
+                class="glyphicon glyphicon-road"></span> Track: {{localSession.track.split('\\').join('')}}
+        </div>
+        <div class="clearfix"></div>
+        <br>
+
+        <div class="panel-group eval-session col-xs-12 col-sm-12 col-md-12 col-lg-12" id="accordion"
+             ng-show="localSession.details!=''">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+	                    <a class="accordion-toggle collapsed eval-link" data-toggle="collapse" data-parent="#accordion" href="#collapseEval{{localSession.id}}">Evaluate this session &#160;
+	                        <span class="glyphicon glyphicon-thumbs-up"></span>
+	                         <span class="glyphicon glyphicon-chevron-down pull-right" style="color:white;margin-right:5px;"></span>
+	                     </a>
+                     </h4>
+                </div>
+                <div id="collapseEval{{localSession.id}}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <form class="form-horizontal"
+                              action="https://YOUR_FEEDBACK_URL"
+                              target="evalFormSubmitsHere" method="post" name="evalForm{{localSession.id}}"
+                              id="evalForm{{localSession.id}}">
+                            <input type="hidden" name="sessionID" value="{{localSession.id}}">
+
+                            <div class="form-group">
+                                How well did the session meet your expectations based on the description?<br>
+                                <label class="radio-inline">
+                                    <input type="radio" id="expectations1" name="expectations" value="1"> 1
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="expectations2" name="expectations" value="2"> 2
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="expectations3" name="expectations" value="3"> 3
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="expectations4" name="expectations" value="4"> 4
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="expectations5" name="expectations" value="5"> 5
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                Did the session improve your knowledge about the topic?<br>
+                                <label class="radio-inline">
+                                    <input type="radio" id="knowledge1" name="knowledge" value="yes"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="knowledge2" name="knowledge" value="yes"> No
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                How responsive to questions and knowledgeable on the topic was the presenter?<br>
+                                <label class="radio-inline">
+                                    <input type="radio" id="knowledgeable1" name="knowledgeable" value="1"> 1
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="knowledgeable2" name="knowledgeable" value="2"> 2
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="knowledgeable3" name="knowledgeable" value="3"> 3
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="knowledgeable4" name="knowledgeable" value="4"> 4
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="knowledgeable5" name="knowledgeable" value="5"> 5
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                How clear and understandable was the presentation?<br>
+                                <label class="radio-inline">
+                                    <input type="radio" id="understandable1" name="understandable" value="1"> 1
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="understandable2" name="understandable" value="2"> 2
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="understandable3" name="understandable" value="3"> 3
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="understandable4" name="understandable" value="4"> 4
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="understandable5" name="understandable" value="5"> 5
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                Was the right amount of material presented in the time allowed?<br>
+                                <label class="radio-inline">
+                                    <input type="radio" id="rightAmount1" name="rightAmount" value="yes"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="rightAmount2" name="rightAmount" value="yes"> No
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                Would you recommend we repeat this session at the next Kuali Days?<br>
+                                <label class="radio-inline">
+                                    <input type="radio" id="recommend1" name="recommend" value="yes"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="recommend2" name="recommend" value="yes"> No
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label for="comments">Comments</label>
+                                <textarea class="form-control" name="comments" id="comments"></textarea>
+                            </div>
+                            <button id="button{{localSession.id}}" type="button"
+                                    ng-click="evaluationFormSubmission('evalForm'+localSession.id,'loading'+localSession.id,'complete'+localSession.id,'button'+localSession.id)"
+                                    class="btn btn-success">Send This Evaluation
+                            </button>
+                            <span id="loading{{localSession.id}}" style="margin-left:20px;display:none;">
+                            	<img src="img/ajax-loader.gif" alt=" ">
+                            </span>
+
+                            <div class="visible-xs"><br></div>
+                            <span id="complete{{localSession.id}}" style="margin-left:20px;display:none;"><span
+                                    class="alert alert-success"
+                                    style="padding:8px;">Thank you for your evaluation.</span></span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-lg-12 schedule-details">{{localSession.details.split('\\').join('')}}</div>
+        <div class="col-xs-12 col-sm-12 col-lg-12 schedule-details" ng-show="localSession.presenters.length>0">
+            <h6>Presenters</h6>
+            <ul class="presenters list-unstyled">
+                <li ng-repeat="presenter in localSession.presenters">
+                    <span class="glyphicon glyphicon-user"></span> {{presenter.name}}</span>,
+                    <em>{{presenter.title}}</em>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal-footer">
+        <a class="btn btn-primary pull-left" ng-href="{{conferencePresentationMaterialsUrl}}" ng-show="conferencePresentationMaterialsUrl!=null">
+            <span class="glyphicon glyphicon-save"></span> Materials
+        </a>
+        <button class="btn btn-primary" ng-show="!isFavorite(localSession.id) && hasLocalStorage"
+                ng-click="addToFavorites(localSession.id,session)" data-dismiss="modal"><span
+                class="glyphicon glyphicon-plus"></span> Favorites
+        </button>
+        <button class="btn btn-primary" ng-show="isFavorite(localSession.id) && hasLocalStorage"
+                ng-click="removeFromFavorites(localSession.id)" data-dismiss="modal"><span
+                class="glyphicon glyphicon-minus"></span> Favorites
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close</button>
+    </div>
+</div>

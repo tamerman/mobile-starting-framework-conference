@@ -1,0 +1,47 @@
+<!--
+
+    The MIT License
+    Copyright (c) 2011 Kuali Mobility Team
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+-->
+<div>
+    <div id="action_{{session.id}}" class="session-link col-xs-12 col-sm-12 col-md-12 col-lg-12" data-toggle="modal" data-backdrop="false">
+        <div class="col-xs-4 col-sm-5 col-md-4 col-lg-3 col-xs-offset-1 hidden-xs">
+            <span class="glyphicon icon-calendar"></span><small> {{session.dateParsed |  date:'mediumDate'}}</small>
+            <br>
+            <span class="glyphicon glyphicon-time"></span><small> {{session.starttime | removeString:' AM' | removeString:' PM'}} &raquo; {{session.endtime | removeString:' AM' | removeString:' PM'}}</small>
+            <br>
+            <small><span class="glyphicon glyphicon-home"></span> <em>{{session.room}}</em></small>
+        </div>
+        <div class="col-xs-2 visible-xs">
+            <span class="glyphicon glyphicon-time"></span><small> {{session.starttime | removeString:' AM' | removeString:' PM'}}</small>
+        </div>
+        <div class="col-xs-10 col-sm-7 col-md-7 col-lg-8">
+            <h5 class="list-group-item-heading">{{session.title.split('\\').join('')}}</h5>
+            <small class="visible-xs"><span class="glyphicon glyphicon-home"></span> <em>{{session.room}}</em></small>
+            <h6 class="hidden-xs" ng-show="session.track.toLowerCase()!='unknown'"><em>{{session.track.split('\\').join('')}}</em></h6>
+            <p class="list-group-item-text hidden-xs">{{session.details.split('\\').join('') | truncate:120:'... &raquo; '}}</p>
+        </div>
+        <div class="favorite-indicator"><span ng-show="isFavorite(session.id)" class="glyphicon glyphicon-certificate"></span></div>
+    </div>
+    <button id="btn01_{{session.id}}" class="swiper hide" ng-click="toggleFavoriteFlag(session.id,session)"></button>
+    <div class="clearfix"></div>
+</div>

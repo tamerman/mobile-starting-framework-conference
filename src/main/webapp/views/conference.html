@@ -1,0 +1,229 @@
+<!--
+
+    The MIT License
+    Copyright (c) 2011 Kuali Mobility Team
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+-->
+<div ng-controller="ConferenceCtrl" id="conference-home" ng-init="init()">
+
+    <!-- *************************************
+        TABLET +
+    ******************************************  -->
+    <div class="hidden-xs homeScreen-tablet-plus">
+
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-show="readyForEval()" id="HomepageEvalForm01">
+            <div class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12" style="font-size:1.5em;margin-top:20px;margin-bottom:0;">
+                Thank you for a wonderful {{conferenceName}}!
+            </div>
+            <div>
+                <h3 class="hidden-xs">Evaluate the Conference!</h3>
+                <ul class="list-group" id="evalConfTablet">
+                    <li class="list-group-item">
+                        <form class="form-horizontal" action="http://YOUR_FEEDBACK_URL" target="evalFormSubmitsHere" method="post" name="evalFormOverall01" id="evalFormOverall01">
+                            <input type="hidden" name="overallEval" value="Yep!">
+                             <div class="form-group">
+                                <label for="opinion">What is your opinion of the sessions? i.e. 45-minute blocks, new session styles, etc?</label>
+                                <textarea class="form-control" name="opinion" id="opinion"></textarea>
+                            </div>
+                             <div class="form-group">
+                                <label for="location">What did you think of the location? Both city of {{conferenceLocation}} and hotel?</label>
+                                <textarea class="form-control" name="location" id="location"></textarea>
+                            </div>
+                             <div class="form-group">
+                                <label for="general">Thoughts on the General Session? How was the timing (not so early)? Content? Presenters?</label>
+                                <textarea class="form-control" name="general" id="general"></textarea>
+                            </div>
+                             <div class="form-group">
+                                <label for="experience">Tell us about your experience with the Collaboration Showcase. Did it work for you? Did you spend time visiting with the sponsors?</label>
+                                <textarea class="form-control" name="experience" id="experience"></textarea>
+                            </div>
+                             <div class="form-group">
+                                <label for="more">Is there is anything else you want us to make a note of for next year?</label>
+                                <textarea class="form-control" name="more" id="more"></textarea>
+                            </div>
+                            <button id="buttonEval01" type="button" ng-click="tookOverallEval(); evaluationFormSubmission(this.form.id,'loadingEval01','completeEval01','buttonEval01')" class="btn btn-success">Send This Evaluation</button>
+                            <span id="loadingEval01" style="margin-left:20px;display:none;"><img src="img/ajax-loader.gif" alt=" "></span>
+                            <div class="visible-xs"><br></div>
+                            <span id="completeEval01" style="margin-left:20px;display:none;"><span class="alert alert-success" style="padding:8px;">Thank you for your evaluation.</span></span>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-hide="readyForEval()" ng-controller="ScheduleCtrl">
+            <div ng-show="hasFavorites()">
+                <h3 class="hidden-xs">My Favorite Sessions</h3>
+                <ul class="list-group" id="favoritesessionpool">
+                    <li class="list-group-item" ng-repeat="session in favorites | orderBy:'+dateObject'">
+                        <sessionModalOpener id="{{session.id}}" ng-click="open(session)"></sessionModalOpener>
+                    </li>
+                </ul>
+            </div>
+
+            <h3 class="hidden-xs">Upcoming Sessions</h3>
+            <loading ng-show="isLoading()"></loading>
+            <ul class="list-group" id="sessionpool">
+                <li class="list-group-item" ng-repeat="session in sessions | filter:!'isOver' | orderBy:'+dateObject'" ng-repeat-is-finished="sessionsLoaded()">
+                    <sessionModalOpener id="{{session.id}}" ng-click="open(session)"></sessionModalOpener>
+                </li>
+                <li class="list-group-item" ng-show="(sessions | filter:!'isOver').length == 0">No upcoming sessions were found.</li>
+            </ul>
+
+        </div>
+
+        <div id="twitterHomeScreen" class="hidden-xs col-sm-6 col-md-5 col-lg-5 col-md-offset-1 col-lg-offset-1" ng-controller="TwitterCtrl">
+
+            <h3 class="col-xs-12 col-sm-10 col-md-10 col-lg-10">Recent Tweets</h3>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <button class="refreshButton btn btn-lg btn-link" ng-click="refresh()"><span id="refreshButtonIcon" class="glyphicon glyphicon-refresh"></span></button>
+            </div>
+
+            <div id="tweetWrapper" ng-iscroll="tweetWrapper" ng-iscroll-delay="50" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div id="scroller">
+                    <div id="pullDown"><span class="pullDownIcon"></span> <span class="pullDownLabel">Pull down to refresh...</span></div>
+                    <ul class="list-group">
+                        <li id="{{tweet.id}}" ng-repeat="tweet in tweets | limitTo:7" class="list-group-item" ng-repeat-is-finished="tweetsLoaded()">
+                            <div style="padding:0" class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><img ng-src="{{tweet.avatar}}" alt=" "></div>
+                            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                <strong>{{tweet.screenname!="Oops!"&&"@"||""}}{{tweet.screenname}}</strong> <small ng-show="tweet.screenname!='Oops!'">: {{tweet.tweetedOnParsed | date:"medium"}}</small><br>
+                                <em><span ng-bind-html="tweet.status"></span></em>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- *************************************
+        PHONE
+    ******************************************  -->
+    <div class="hidden-sm hidden-md hidden-lg homeScreen-phone">
+
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default" ng-show="readyForEval()" id="HomepageEvalForm02">
+                <div class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12" style="font-size:1.5em;margin-bottom:0;padding:15px;">
+                    Thank you for a wonderful {{conferenceName}}!
+                </div>
+                <div class="panel-heading">
+                    <h4 class="panel-title"><a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEval"><span class="glyphicon icon-thumbs-up"></span> &#160; Overall Conference Evaluation</a></h4>
+                </div>
+                <div id="collapseEval" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <ul class="list-group" id="evalConfPhone">
+                            <li class="list-group-item">
+                                <form class="form-horizontal" action="https://iu.edu/~iumobile/kmebeta3/conference/evaluation-form/save-overall.php" target="evalFormSubmitsHere" method="post" name="evalFormOverall02" id="evalFormOverall02">
+                                    <input type="hidden" name="overallEval" value="Yep!">
+                                     <div class="form-group">
+                                        <label for="opinion">What is your opinion of the sessions? i.e. 45-minute blocks, new session styles, etc?</label>
+                                        <textarea class="form-control" name="opinion" id="opinion"></textarea>
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="location">What did you think of the location? Both city of San Diego and hotel?</label>
+                                        <textarea class="form-control" name="location" id="location"></textarea>
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="general">Thoughts on the General Session? How was the timing (not so early)? Content? Presenters?</label>
+                                        <textarea class="form-control" name="general" id="general"></textarea>
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="experience">Tell us about your experience with the Collaboration Showcase. Did it work for you? Did you spend time visiting with the sponsors?</label>
+                                        <textarea class="form-control" name="experience" id="experience"></textarea>
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="more">Is there is anything else you want us to make a note of for next year?</label>
+                                        <textarea class="form-control" name="more" id="more"></textarea>
+                                    </div>
+                                    <button id="buttonEval02" type="button" ng-click="tookOverallEval(); evaluationFormSubmission(this.form.id,'loadingEval02','completeEval02','buttonEval02')" class="btn btn-success">Send This Evaluation</button>
+                                    <span id="loadingEval02" style="margin-left:20px;display:none;"><img src="img/ajax-loader.gif" alt=" "></span>
+                                    <div class="visible-xs"><br></div>
+                                    <span id="completeEval02" style="margin-left:20px;display:none;"><span class="alert alert-success" style="padding:8px;">Thank you for your evaluation.</span></span>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default" ng-hide="readyForEval()" ng-controller="ScheduleCtrl">
+                <div class="panel-heading accordion-toggle" ng-click="collapseFavorites=!collapseFavorites" ng-init="collapseFavorites=true">
+                    <h4 class="panel-title"><span class="glyphicon icon-calendar"></span> &#160; My Favorite Sessions</h4>
+                </div>
+                <div id="collapseFavorites" collapse="collapseFavorites">
+                    <div class="panel-body">
+                        <ul class="list-group" id="favorites">
+                            <li class="list-group-item" ng-show="!hasFavorites()" style="padding:0">
+                                <div class="col-xs-12" style="padding:10px"><em>You have not selected any favorite sessions yet.</em></div>
+                            </li>
+                            <li class="list-group-item" ng-repeat="session in favorites | orderBy:'+dateObject'">
+                                <sessionModalOpener id="{{session.id}}" ng-click="open(session)"></sessionModalOpener>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default" ng-hide="readyForEval()" ng-controller="ScheduleCtrl">
+                <div class="panel-heading accordion-toggle" ng-click="collapseUpcoming=!collapseUpcoming" ng-init="collapseUpcoming=true">
+                    <h4 class="panel-title"><span class="glyphicon icon-calendar"></span> &#160; Upcoming Sessions</h4>
+                </div>
+                <div id="collapseSessions" collapse="collapseUpcoming">
+                    <div class="panel-body">
+                        <ul class="list-group" id="sessions">
+                            <li class="list-group-item" ng-repeat="session in sessions | filter:!'isOver' | orderBy:'+dateObject'">
+                                <sessionModalOpener id="{{session.id}}" ng-click="open(session)"></sessionModalOpener>
+                            </li>
+                            <li class="list-group-item" ng-show="(sessions | filter:!'isOver').length == 0">No upcoming sessions were found.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default" ng-controller="TwitterCtrl">
+                <div class="panel-heading accordion-toggle" ng-click="collapseTweets=!collapseTweets" ng-init="collapseTweets=true">
+                    <h4 class="panel-title"><span class="glyphicon icon-twitter"></span>&#160; Recent Tweets</h4>
+                </div>
+                <div id="collapseTweets" collapse="collapseTweets">
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="tweet in tweets | limitTo:5">
+                                <div class="col-xs-12">
+                                    <div style="padding:0" class="col-xs-3 col-sm-2 col-md-2 col-lg-2"><img ng-src="{{tweet.avatar}}" alt=" "></div>
+                                    <div class="col-xs-9 col-sm-10 col-md-10 col-lg-10">
+                                        <strong>@{{tweet.screenname}}</strong> <small ng-show="tweet.screenname!='Oops!'"> : {{tweet.tweetedOnParsed | date:"short"}}</small><br>
+                                        <span ng-bind-html="tweet.status"></span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>    
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+

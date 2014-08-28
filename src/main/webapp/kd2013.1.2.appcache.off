@@ -1,0 +1,165 @@
+CACHE MANIFEST
+# ####################################################
+# ####################################################
+# version : 2013-11-21:v6.5
+# ####################################################
+#
+# - Fixed date issue on mobile/phone
+# - Made adjustments to phone-display
+# - Made adjustments to "no favorites message"
+# - Major upgrade to sessions over messages, etc
+#
+# ####################################################
+# barnetjm @ 8:00 PM PST
+# ######################
+
+
+# ----------------------------------------------------
+# Explicitly cached
+# ----------------------------------------------------
+CACHE: 
+
+# - Catch-all
+http://m.kuali.org/kme-beta/
+http://m.kuali.org/kme-beta/index.html
+http://m.kuali.org/kme-beta/index.html#
+http://m.kuali.org/kme-beta/index.html#/
+http://m.kuali.org/kme-beta/index.html#/schedule
+http://m.kuali.org/kme-beta/index.html#/attendees
+http://m.kuali.org/kme-beta/index.html#/map
+http://m.kuali.org/kme-beta/index.html#/twitter
+http://m.kuali.org/kme-beta/index.html#/activities
+
+# - Fonts
+fonts/glyphicons-halflings-regular.eot
+fonts/glyphicons-halflings-regular.svg
+fonts/glyphicons-halflings-regular.ttf
+fonts/glyphicons-halflings-regular.woff
+vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.eot
+vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.svg
+vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf
+vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.woff
+vendor/font-awesome/font/fontawesome-webfont.eot
+vendor/font-awesome/font/fontawesome-webfont.svg
+vendor/font-awesome/font/fontawesome-webfont.ttf
+vendor/font-awesome/font/fontawesome-webfont.woff
+vendor/font-awesome/font/FontAwesome.otf
+vendor/font-awesome/font/fontawesome-webfont.eot?v=3.2.1
+vendor/font-awesome/font/fontawesome-webfont.svg?v=3.2.1
+vendor/font-awesome/font/fontawesome-webfont.ttf?v=3.2.1
+vendor/font-awesome/font/fontawesome-webfont.woff?v=3.2.1
+vendor/font-awesome/font/FontAwesome.otf?v=3.2.1
+vendor/font-awesome/font/fontawesome-webfont.eot?#iefix&v=3.2.1
+vendor/font-awesome/font/fontawesome-webfont.svg?#iefix&v=3.2.1
+vendor/font-awesome/font/fontawesome-webfont.ttf?#iefix&v=3.2.1
+vendor/font-awesome/font/fontawesome-webfont.woff?#iefix&v=3.2.1
+vendor/font-awesome/font/FontAwesome.otf?#iefix&v=3.2.1
+
+# - Images
+img/no-tweets.gif
+img/ajax-loader.gif
+img/kd-logo.png
+img/glyphicons-halflings-white.png
+img/glyphicons-halflings.png
+img/maps/sheraton-property.jpg
+img/maps/sheraton-marina-lower.jpg
+img/maps/sheraton-marina-lobby.jpg
+img/icons/apple-touch-icon.png
+img/icons/apple-touch-icon-76.png
+img/icons/apple-touch-icon-120.png
+img/icons/apple-touch-icon-152.png
+https://www.kuali.org/favicon.ico
+
+# - CSS
+vendor/bootstrap/dist/css/bootstrap.min.css
+vendor/ng-iscroll/ng-iscroll.css
+vendor/font-awesome/css/font-awesome.min.css
+css/ie10.responsive-fix.css
+css/custom.min.css
+
+# - JavaScript
+vendor/angular/angular.min.js
+vendor/jquery/jquery.min.js
+vendor/bootstrap/dist/js/bootstrap.min.js
+vendor/angular-bootstrap/ui-bootstrap-tpls.min.js
+vendor/store/store.min.js
+vendor/toe/toe.min.js
+vendor/ng-iscroll/iscroll.js
+vendor/ng-iscroll/ng-iscroll.js
+js/custom.js
+app/conference/conferenceModule.js
+app/conference/conferenceController.js
+app/schedule/scheduleService.js
+app/schedule/scheduleController.js
+app/schedule/scheduleDetailController.js
+app/activities/activitiesService.js
+app/activities/activitiesController.js
+app/attendees/attendeesService.js
+app/attendees/attendeesController.js
+app/map/mapService.js
+app/map/mapController.js
+app/twitter/twitterService.js
+app/twitter/twitterController.js  
+js/ie10.responsive-fix.js
+js/ie8.responsive-fix.js
+
+
+# - JSON (loaded from passthrough JAVA calls)
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/schedule/2013-11-18.json 
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/schedule/2013-11-19.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/schedule/2013-11-20.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/schedule/2013-11-21.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/all.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/a.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/b.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/c.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/d.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/e.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/f.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/g.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/h.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/i.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/j.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/k.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/l.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/m.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/n.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/o.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/p.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/q.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/r.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/s.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/t.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/u.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/v.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/w.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/x.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/y.json
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/processed/attendees/z.json
+
+# - HTML
+index.html
+
+# - HTML Templates (views)
+views/map.html
+views/activities.html
+views/attendees.html
+views/conference.html
+views/schedule.html
+views/schedule-details.html
+views/twitter.html
+app/_directive-templates/loading.html
+app/_directive-templates/session-modal-opener.html
+app/_directive-templates/session-modal.html
+
+# - GOOGLE
+https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=1380+Harbor+Island+Drive,+San+Diego,+CA&amp;aq=0&amp;oq=1380+Harbor+Island+Drive,+San+Diego,+CA&amp;sll=32.727039,-117.1979&amp;sspn=0.00899,0.008765&amp;t=m&amp;ie=UTF8&amp;hq=&amp;hnear=1380+Harbor+Island+Dr,+San+Diego,+California+92101&amp;z=14&amp;iwloc=A&amp;ll=32.734585,-117.197342&amp;output=embed
+
+# ----------------------------------------------------
+# Resources that require the user to be online.
+# ----------------------------------------------------
+NETWORK:
+http://pbs.twimg.com/
+json/passthrough?feedurl=https%3A//iu.edu/%7Eiumobile/kme3beta/conference/json/activities/feed.json
+json/twitter-search
+*

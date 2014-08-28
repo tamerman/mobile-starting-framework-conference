@@ -1,0 +1,49 @@
+<!--
+
+    The MIT License
+    Copyright (c) 2011 Kuali Mobility Team
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+-->
+<div ng-controller="ActivitiesCtrl">
+    <h3 class="hidden-xs">Activities, Let's Have Some Fun!</h3>
+
+    <p class="alert">The activities listed below are being offered as a public service by members of the community.  These events are informal and are not sanctioned by Kuali Days 2013, the Kuali Foundation, or CONCENTRA. Enjoy!</p>
+
+    <div class="col-xs-12 col-sm-12 col-lg-12" ng-class="isLoading()&&' fadedout '||''">
+        <loading ng-show="isLoading()"></loading>
+        <ul class="list-group" id="activitiesList">
+            <li class="list-group-item" ng-repeat="activity in activities | orderBy:'+udate'" ng-repeat-is-finished="activitiesLoaded()">
+                <div style="padding:0;" class="col-xs-4 col-sm-5 col-md-5 col-lg-4" ng-show="activity.title!='Oops!'">
+                    <span class="glyphicon icon-calendar"></span><small> {{activity.dateString}}</small>
+                    <br>
+                    <span class="glyphicon glyphicon-time"></span><small> {{activity.timeString}}</small>
+                </div>
+                <div style="padding:0;" class="col-xs-8 col-sm-7 col-md-7 col-lg-8">
+                    <h5 class="list-group-item-heading">{{activity.title}}</h5>
+                    <p class="list-group-item-text"><span ng-bind-html="activity.task"></span></p>
+                </div>
+                <div class="clearfix"></div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+

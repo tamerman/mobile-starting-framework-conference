@@ -1,0 +1,66 @@
+<!--
+
+    The MIT License
+    Copyright (c) 2011 Kuali Mobility Team
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+-->
+<div ng-controller="MapCtrl">
+    <h3 class="hidden-xs">Conference Maps</h3>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading" ng-click="collapse1 = !collapse1" ng-init="collapse1=true">
+                    <h4 class="panel-title">JW Marriott, First Floor</h4>
+                </div>
+                <div collapse="collapse1" class="panel-collapse collapse">
+                    <div class="panel-body"><img ng-src="img/maps/indianapolis-marriott-floor-1.jpg" alt="JW Marriott, First Floor" class="img-responsive"></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" ng-click="collapse2 = !collapse2" ng-init="collapse2=true">
+                    <h4 class="panel-title">JW Marriott, Second Floor</h4>
+                </div>
+                <div collapse="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body"><img ng-src="img/maps/indianapolis-marriott-floor-2.jpg" alt="JW Marriott, Second Floor" class="img-responsive"></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" ng-click="collapse3 = !collapse3" ng-init="collapse3=true">
+                    <h4 class="panel-title">JW Marriott, Third Floor</h4>
+                </div>
+                <div collapse="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body"><img ng-src="img/maps/indianapolis-marriott-floor-3.jpg" alt="JW Marriott, Third Floor" class="img-responsive"></div>
+                </div>
+            </div>
+            <!--<div class="panel panel-default">-->
+                <!--<div class="panel-heading">-->
+                    <!--<h4 class="panel-title"><a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseGoogle" ng-click="loadMap('https://maps.google.com/maps/ms?msid=204835391563144834574.0004e2ac4c52b647e99c0&amp;msa=0&amp;ie=UTF8&amp;t=m&amp;ll=32.725198,-117.180862&amp;spn=0.050545,0.072956&amp;z=13&amp;output=embed')">San Diego Map</a></h4>-->
+                <!--</div>-->
+                <!--<div id="collapseGoogle" class="panel-collapse collapse">-->
+                    <!--<div class="panel-body" style="padding:0 15px"><iframe id="mapframe" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+
+
+

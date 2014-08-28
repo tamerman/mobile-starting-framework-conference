@@ -1,0 +1,134 @@
+<!--
+
+    The MIT License
+    Copyright (c) 2011 Kuali Mobility Team
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+-->
+<!doctype html>
+<html lang="en" ng-app="conference">
+<head>
+  <title>Kuali Days</title>
+
+  <meta charset="UTF-8">
+  <meta name="apple-itunes-app" content="app-id=477554330">
+
+  <link href="https://www.kuali.org/favicon.ico" rel="icon" />
+  <link href="https://www.kuali.org/favicon.ico" rel="shortcut icon" />
+
+  <link rel="apple-touch-icon" href="img/icons/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="img/icons/apple-touch-icon-76.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="img/icons/apple-touch-icon-120.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="img/icons/apple-touch-icon-152.png">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="keywords" content="Kuali Days, 2013 Kuali Days, KD Conference, 2013 KD Conference, Kuali Days Conference, 2012, 2013">
+  <meta name="description" content="The Kuali Foundation produces quality, community source software for higher education, by higher education.">
+
+  <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="vendor/ng-iscroll/ng-iscroll.css">
+  <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/ie10.responsive-fix.css">
+  <link rel="stylesheet" href="css/custom.min.css">
+
+</head>
+
+<body id="app" ng-controller="ConferenceCtrl">  
+  <div>
+
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <div class="navbar-brand">
+              <img src="img/kd-logo.png" alt=" " class="img-responsive">
+            </div>
+            <h1>Kuali Days</h1>
+        </div>
+        <div class="hidden-xs collapse navbar-collapse navbar-conferenceApp pull-right">
+          <ul class="nav navbar-nav">
+            <li ng-class="isPageActive('conference')&&'active'||''"><a href="#/home">Home</a></li>
+            <li ng-class="isPageActive('attendees')&&'active'||''"><a href="#/attendees">Attendees</a></li>
+            <li ng-class="isPageActive('schedule')&&'active'||''"><a href="#/schedule">Program</a></li>
+            <li ng-class="isPageActive('twitter')&&'active'||''"><a href="#/twitter">Tweets</a></li>
+            <li ng-class="isPageActive('map')&&'active'||''"><a href="#/map">Maps</a></li>
+            <li ng-class="isPageActive('activities')&&'active'||''"><a href="#/activities">Activities</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="theContentArea" class="container main-view" ng-view=""></div>
+
+      <nav class="hidden-lg hidden-md hidden-sm navbar navbar-inverse navbar-fixed-bottom" id="xsNavigation" role="navigation">
+        <ul class="nav nav-pills col-xs-12">
+          <li ng-class="isPageActive('conference')&&'active'||''"><a href="#/home"><span class="glyphicon glyphicon-home"></span></a></li>
+          <li ng-class="isPageActive('attendees')&&'active'||''"><a href="#/attendees"><span class="glyphicon glyphicon-user"></span></a></li>
+          <li ng-class="isPageActive('schedule')&&'active'||''"><a href="#/schedule"><span class="glyphicon icon-calendar"></span></a></li>
+          <li ng-class="isPageActive('twitter')&&'active'||''"><a href="#/twitter"><span class="glyphicon icon-twitter"></span></a></li>
+          <li ng-class="isPageActive('map')&&'active'||''"><a href="#/map"><span class="glyphicon glyphicon-map-marker"></span></a></li>
+          <li ng-class="isPageActive('activities')&&'active'||''"><a href="#/activities"><span class="glyphicon icon-bullhorn"></span></a></li>
+        </ul>
+      </nav>
+
+
+  </div>
+  <div class="site-footer hidden-xs hidden-sm">
+    <div>
+      COPYRIGHT &copy; <script>document.write( (new Date()).getFullYear() );</script> KUALI FOUNDATION, INC
+      &#160; |  &#160;
+      <a href="http://www.kuali.org/privacy" target="_blank">PRIVACY POLICY</a>
+    </div>
+  </div>
+
+  <!-- LOAD ALL JS (except the IE 8- fix above) -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js" type="application/javascript"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.js" type="application/javascript"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js" type="application/javascript"></script>
+  <!--<script src="vendor/angular/angular.min.js"></script>-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="vendor/store/store.min.js"></script>
+  <script src="vendor/toe/toe.min.js"></script>
+  <script src="vendor/ng-iscroll/iscroll.js"></script>
+  <script src="vendor/ng-iscroll/ng-iscroll.js"></script>
+
+  <script src="js/custom.js"></script>
+
+  <script src="app/conference/conferenceModule.js"></script>
+  <script src="app/conference/conferenceController.js"></script>
+  <script src="app/schedule/scheduleService.js"></script>
+  <script src="app/schedule/scheduleController.js"></script>
+  <script src="app/activities/activitiesService.js"></script>
+  <script src="app/activities/activitiesController.js"></script>
+  <script src="app/attendees/attendeesService.js"></script>
+  <script src="app/attendees/attendeesController.js"></script>
+  <script src="app/map/mapService.js"></script>
+  <script src="app/map/mapController.js"></script>
+  <script src="app/twitter/twitterService.js"></script>
+  <script src="app/twitter/twitterController.js"></script>
+  
+  <script src="js/ie10.responsive-fix.js"></script>
+  <script src="js/ie8.responsive-fix.js"></script>
+
+  <iframe style="position:absolute;top:-99px;left:-99px;width:1px;height:1px;" name="evalFormSubmitsHere" id="evalFormSubmitsHere" border="0" frameborder="0" src="https://iu.edu/~iumobile/kmebeta3/conference/evaluation-form/save.php">
+
+</body>
+</html>

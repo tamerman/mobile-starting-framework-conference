@@ -1,0 +1,65 @@
+<!--
+
+    The MIT License
+    Copyright (c) 2011 Kuali Mobility Team
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+-->
+<div ng-controller="ScheduleCtrl">
+    <h3 class="hidden-xs">Conference Program</h3>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-4">
+        <ul class="nav nav-pills">
+            <li ng-repeat="(key,dt) in conferenceDates" class="col-sm-12 col-md-12 col-lg-12">
+                <button type="button" ng-click="changeDate(dt)" class="hidden-xs btn btn-default btn-block" ng-class="dt==dateSelected+'T100000Z'&&'active'||''">
+                    {{dt | date:'EEEE'}}
+                </button>
+                <button type="button" ng-click="changeDate(dt)" class="hidden-sm hidden-md hidden-lg btn btn-default" ng-class="dt==dateSelected+'T100000Z'&&'active'||''">
+                    {{dt | date:'EEE'}}
+                </button>
+            </li>
+            <li ng-show="hasFavorites()" class="col-sm-12 col-md-12 col-lg-12">
+                <button type="button" ng-click="changeDate('fav')" class="hidden-xs btn btn-default btn-block" ng-class="dateSelected=='fav'&&'active'||''">
+                    My Favorites
+                </button>
+                <button type="button" ng-click="changeDate('fav')" class="hidden-sm hidden-md hidden-lg btn btn-default" ng-class="dateSelected=='fav'&&'active'||''">
+                    Favs
+                </button>
+            </li>
+        </ul>
+    </div>
+	<div class="col-xs-12 col-sm-8 col-lg-7 col-lg-offset-1 col-sm-offset-1" ng-class="isLoading()&&' fadedout '||''">
+		<loading ng-show="isLoading()"></loading>
+		<div class="styled-select">
+			<label>
+				<select name="trackFilter" id="trackFilter" ng-model="trackFilter">
+					<option value="">All Tracks</option>
+					<option ng-repeat="track in tracks" value="{{track}}">{{track}}</option>
+				</select>
+			</label>
+		</div>
+		<ul class="list-group" id="session{{filterBy}}">
+			<li class="list-group-item" ng-repeat="session in sessions | orderBy:'dateObject' | filter:{'date':dateToFilterOn} | filter:{ 'track' : trackFilter }" ng-repeat-is-finished="sessionsLoaded()">
+                <sessionModalOpener ng-class="session.isOver&&'session-over'||''" id="{{session.id}}" ng-click="open(session)"></sessionModalOpener>
+	      	</li>
+            <li class="list-group-item" ng-show="(sessions | filter:{'date':dateToFilterOn} | filter:{ 'track' : trackFilter }).length == 0">
+                <div class="session-link col-xs-12 col-sm-12 col-md-12 col-lg-12">No sessions match your date/track criteria.</div></li>
+	    </ul>
+	</div>
+</div>
